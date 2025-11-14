@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Hesam Nezhadmohammad — Wireless Communications</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Simple, readable defaults -->
+    <style>
+        :root { --max: 820px; --fg: #111; --muted:#555; --link:#0b57d0; }
+        html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;color:var(--fg);background:#fff;}
+        a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+        header,main,footer{max-width:var(--max);margin:auto;padding:20px}
+        header{padding-top:36px}
+        h1{font-size:1.9rem;margin:0 0 4px 0}
+        h2{font-size:1.2rem;margin:24px 0 8px}
+        .muted{color:var(--muted)}
+        .grid{display:grid;gap:12px}
+        .two{grid-template-columns: 1fr auto; align-items:baseline}
+        .pill{display:inline-block;border:1px solid #ddd;border-radius:999px;padding:4px 10px;margin:4px 6px 0 0;font-size:0.9rem}
+        hr{border:0;border-top:1px solid #e6e6e6;margin:20px 0}
+        /* responsive */
+        @media (max-width:640px){ .two{grid-template-columns:1fr} }
+
+        img.profile {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+        }
+
+        .gallery {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .gallery img {
+            width: 48%;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+    </style>
+    <!-- Open Graph basics -->
+    <meta property="og:title" content="Hesam Nezhadmohammad — Wireless Communications">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://USERNAME.github.io/">
+    <meta property="og:description" content="Research in mmWave communications, RIS/BD-RIS, ISAC, and backscatter.">
+    <!-- (Optional) MathJax if you show formulas -->
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<header class="grid" style="align-items:center;grid-template-columns:120px 1fr;gap:20px;">
+    <img src="images/profile.jpeg" alt="Profile photo" class="profile">
+    <div>
+        <h1>Hesam Nezhadmohammad</h1>
+        <div class="muted">Wireless Communications · RIS/BD-RIS · ISAC · Backscatter</div>
+        <div class="muted">
+            <a href="mailto:h.nezhadmohammad@mail.sbu.ac.ir">Email</a> |
+            <!-- <a href="https://scholar.google.com/citations?user=YOURID">Google Scholar</a> · -->
+            <a href="https://github.com/hesaminzh">GitHub</a>
+            <!-- <a href="CV/Hesam_CV.pdf">CV (PDF)</a> -->
+        </div>
+    </div>
+</header>
+<main>
+    <section>
+        <div class="two">
+            <h2>Research Interests</h2>
+            <a href="CV/Hesam_CV.pdf">Download CV</a>
+        </div>
+        <p>
+            mmWave Communications, Reconfigurable Intelligent Surfaces (RIS/BD-RIS), Integrated Sensing and Communication (ISAC), Backscatter, Optimization and Signal Processing.
+        </p>
+        <div>
+            <span class="pill">RIS/BD-RIS</span>
+            <span class="pill">mmWave</span>
+            <span class="pill">ISAC</span>
+            <span class="pill">Backscatter</span>
+            <span class="pill">Optimization</span>
+            <span class="pill">MATLAB · Python</span>
+        </div>
+    </section>
+<hr>
+<section>
+    <h2>About</h2>
+    <p>
+        I hold an M.Sc. in Telecommunications Engineering from 
+        <strong>Shahid Beheshti University</strong> (National University of Iran). 
+        My research focuses on <strong>signal processing</strong> and <strong>optimization</strong> 
+        for wireless communications, particularly in 
+        <strong>millimeter-wave (mmWave) systems</strong>, 
+        <strong>reconfigurable intelligent surfaces (RIS)</strong>, 
+        <strong>beyond-diagonal RIS (BD-RIS)</strong>, and 
+        <strong>integrated sensing and communications (ISAC)</strong>. 
+        I am passionate about developing and analyzing advanced methods to enhance the performance and efficiency 
+        of next-generation wireless systems.
+    </p>
+    <div class="gallery">
+        <img src="images/MSc_Thesis_Defense_Presentation.jpeg" alt="Graduation presentation 1">
+        <img src="images/MSc_Thesis_Defense.jpeg" alt="Graduation presentation 2">
+    </div>
+</section>
+
+
+    <hr>
+    <section>
+        <h2>Selected Publications</h2>
+        <ul>
+            <li><strong>Beyond-Diagonal RIS-Aided Outdoor-to-Indoor mmWave Communications</strong> (to be submitted to IEEE TWC, 2025). Authors: H. Nezhadmohammad, M. Nerini, R. Asvadi, A. Pirhadi, B. Clerckx.</li>
+        </ul>
+    </section>
+    <hr>
+    <section>
+        <h2>Teaching</h2>
+        <p>Teaching Assistant — Wireless Communications (Fall 2024), Instructor: Dr. Reza Asvadi.</p>
+    </section>
+    <hr>
+    <section>
+        <h2>Projects</h2>
+        <p>Sudoku Solver via Linear Programming Relaxation (CVX/MOSEK), Convex Optimization (Spring 2023).</p>
+    </section>
+</main>
+<footer>
+    <hr>
+    <div class="muted">© <span id="y"></span> Hesam Nezhadmohammad</div>
+</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
+
