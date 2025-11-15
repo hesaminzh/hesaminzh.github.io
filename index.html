@@ -29,25 +29,37 @@
             border: 2px solid #ddd;
         }
 
-        .gallery {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
+    .gallery {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* centers caption and the row */
+        margin-top: 10px;
+    }
 
-        .gallery img {
-            width: 48%;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-        }
+    .gallery-row {
+        display: flex;
+        gap: 10px;
+    }
 
+    .gallery-row img {
+        width: 48%;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+    }
+
+    .gallery figcaption {
+        margin-top: 6px;
+        font-size: 0.85em;
+        color: #6c757d;
+        text-align: center;
+        width: 100%; /* optional, but keeps caption centered nicely */
+    }
     </style>
     <!-- Open Graph basics -->
     <meta property="og:title" content="Hesam Nezhadmohammad — Wireless Communications">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://USERNAME.github.io/">
-    <meta property="og:description" content="Research in mmWave communications, RIS/BD-RIS, ISAC, and backscatter.">
+    <meta property="og:description" content="Research in mmWave communications, RIS/BD-RIS, ISAC, and BackCom.">
     <!-- (Optional) MathJax if you show formulas -->
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -57,7 +69,7 @@
     <img src="images/profile.jpeg" alt="Profile photo" class="profile">
     <div>
         <h1>Hesam Nezhadmohammad</h1>
-        <div class="muted">Wireless Communications · RIS/BD-RIS · ISAC · Backscatter</div>
+        <div class="muted">Wireless Communications · RIS/BD-RIS · ISAC · BackCom</div>
         <div class="muted">
             <a href="mailto:h.nezhadmohammad@mail.sbu.ac.ir">Email</a> |
             <!-- <a href="https://scholar.google.com/citations?user=YOURID">Google Scholar</a> · -->
@@ -73,13 +85,13 @@
             <a href="CV/Hesam_CV.pdf">Download CV</a>
         </div>
         <p>
-            mmWave Communications, Reconfigurable Intelligent Surfaces (RIS/BD-RIS), Integrated Sensing and Communication (ISAC), Backscatter, Optimization and Signal Processing.
+            Reconfigurable Intelligent Surfaces (RIS/BD-RIS), Integrated Sensing and Communication (ISAC), Backscatter Communication (BackCom), Optimization and Signal Processing.
         </p>
         <div>
             <span class="pill">RIS/BD-RIS</span>
-            <span class="pill">mmWave</span>
             <span class="pill">ISAC</span>
-            <span class="pill">Backscatter</span>
+            <span class="pill">BackCom</span>
+            <span class="pill">mmWave</span>
             <span class="pill">Optimization</span>
             <span class="pill">MATLAB · Python</span>
         </div>
@@ -92,17 +104,26 @@
         <strong>Shahid Beheshti University</strong> (National University of Iran). 
         My research focuses on <strong>signal processing</strong> and <strong>optimization</strong> 
         for wireless communications, particularly in 
-        <strong>millimeter-wave (mmWave) systems</strong>, 
-        <strong>reconfigurable intelligent surfaces (RIS)</strong>, 
-        <strong>beyond-diagonal RIS (BD-RIS)</strong>, and 
-        <strong>integrated sensing and communications (ISAC)</strong>. 
+        <strong>reconfigurable intelligent surface (RIS)</strong>, 
+        <strong>beyond-diagonal RIS (BD-RIS)</strong>,
+        <strong>integrated sensing and communication (ISAC)</strong>, and
+        <strong>backscatter communication (BackCom)</strong>.
         I am passionate about developing and analyzing advanced methods to enhance the performance and efficiency 
         of next-generation wireless systems.
     </p>
-    <div class="gallery">
-        <img src="images/MSc_Thesis_Defense_Presentation.jpeg" alt="Graduation presentation 1">
-        <img src="images/MSc_Thesis_Defense.jpeg" alt="Graduation presentation 2">
-    </div>
+
+    <!-- Unified Caption -->
+    <figure class="gallery">
+        <div class="gallery-row">
+            <img src="images/MSc_Thesis_Defense_Presentation.jpeg" alt="Graduation presentation 1">
+            <img src="images/MSc_Thesis_Defense.jpeg" alt="Graduation presentation 2">
+        </div>
+
+        <figcaption class="muted">
+            MSc Thesis defense at Shahid Beheshti University
+        </figcaption>
+    </figure>
+
 </section>
 
 
