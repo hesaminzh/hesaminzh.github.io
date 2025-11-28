@@ -36,15 +36,16 @@
         margin-top: 10px;
     }
 
-    .gallery-row {
-        display: flex;
-        gap: 10px;
+    .gallery-row a {
+        width: 48%;
+        display: inline-block;
     }
 
     .gallery-row img {
-        width: 48%;
+        width: 100%;          /* fills its <a> container */
         border-radius: 6px;
         border: 1px solid #ddd;
+        cursor: pointer;
     }
 
     .gallery figcaption {
@@ -115,8 +116,15 @@
     <!-- Unified Caption -->
     <figure class="gallery">
         <div class="gallery-row">
-            <img src="images/MSc_Thesis_Defense_Presentation.jpeg" alt="Graduation presentation 1">
-            <img src="images/MSc_Thesis_Defense.jpeg" alt="Graduation presentation 2">
+
+            <a href="images/MSc_Thesis_Defense_Presentation_copy.jpeg" target="_blank">
+                <img src="images/MSc_Thesis_Defense_Presentation_copy.jpeg" alt="Graduation presentation 1">
+            </a>
+
+            <a href="images/MSc_Thesis_Defense_copy.jpeg" target="_blank">
+                <img src="images/MSc_Thesis_Defense_copy.jpeg" alt="Graduation presentation 2">
+            </a>
+
         </div>
 
         <figcaption class="muted">
@@ -145,14 +153,19 @@
 
         <p>
             Sudoku Solver via Linear Programming (CVX/MOSEK), 
-            Convex Optimization (Spring 2023). 
+            Convex Optimization (Spring 2023)
             <a href="https://github.com/hesaminzh/Sudoku-CVX">[code]</a>
         </p>
 
         <p>
-            Two-Stage BD-RIS Beamforming Design Without a Direct BS–User Link. 
-            <a href="https://github.com/hesaminzh/bdris-twostage-report/tree/main/simulations">[code</a>, 
+            Two-Stage BD-RIS Beamforming Design Without a Direct BS–User Link
+            <a href="https://github.com/hesaminzh/bdris-twostage-report/tree/main/simulations">[code</a>,
             <a href="https://github.com/hesaminzh/bdris-twostage-report/blob/main/assets/report_two_stage_no_direct.pdf"> report]</a>
+        </p>
+
+        <p>
+            Graph Theoretic Visualization of BD-RIS Sparsity Patterns
+            <a href="https://github.com/hesaminzh/bdris-graph-architectures">[code]</a>
         </p>
     </section>
 </main>
@@ -163,3 +176,4 @@
 <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
 </body>
 </html>
+
