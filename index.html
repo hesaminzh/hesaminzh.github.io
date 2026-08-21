@@ -6,13 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Simple, readable defaults -->
     <style>
-        :root { --max: 820px; --fg: #111; --muted:#555; --link:#0b57d0; }
-        html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;color:var(--fg);background:#fff;}
-        a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
-        header,main,footer{max-width:var(--max);margin:auto;padding:20px}
-        header{padding-top:36px}
-        h1{font-size:1.9rem;margin:0 0 4px 0}
-        h2{font-size:1.2rem;margin:24px 0 8px}
+        <!-- :root { --max: 820px; --fg: #111; --muted:#555; --link:#0b57d0; } -->
+        :root {
+            --max: 920px;
+            --fg: #111;
+            --muted: #555;
+            --link: #0b57d0;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+            color: var(--fg);
+            background: #fff;
+            line-height: 1.55;
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        header, main, footer {
+            max-width: var(--max);
+            margin: auto;
+            padding: 20px 24px;
+        }
+
+        header {
+            padding-top: 36px;
+        }
+
+        h1 {font-size:1.9rem;margin:0 0 4px}
+        h2 {font-size:1.2rem;margin:24px 0 8px}
+        h3 {font-size:1rem;margin:14px 0 6px}
+
+        img.profile {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+        }
         .muted{color:var(--muted)}
         .grid{display:grid;gap:12px}
         .two{grid-template-columns: 1fr auto; align-items:baseline}
@@ -21,13 +61,15 @@
         /* responsive */
         @media (max-width:640px){ .two{grid-template-columns:1fr} }
 
-        img.profile {
-            width: 130px;
-            height: 130px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid #ddd;
-        }
+        <!-- img.profile { -->
+        <!--     width: 130px; -->
+        <!--     height: 130px; -->
+        <!--     object-fit: cover; -->
+        <!--     border-radius: 50%; -->
+        <!--     border: 2px solid #ddd; -->
+        <!-- } -->
+
+
 
     .gallery {
         display: flex;
@@ -66,7 +108,11 @@
 </head>
 <body>
 
-<header class="grid" style="align-items:center;grid-template-columns:120px 1fr;gap:20px;">
+<!-- <header class="grid" style="align-items:center;grid-template-columns:120px 1fr;gap:20px;"> -->
+    <header class="grid"
+            style="align-items:center;
+                   grid-template-columns:150px 1fr;
+                   gap:24px;">
     <img src="images/profile.jpeg" alt="Profile photo" class="profile">
     <div>
         <h1>Hesam Nezhadmohammad</h1>
@@ -139,10 +185,43 @@
     <hr>
     <section>
         <h2>Publications</h2>
+
+        <h3>Manuscript in Preparation</h3>
         <ul>
-            <li>Beyond-Diagonal RIS-Aided Outdoor-to-Indoor mmWave Communications (manuscript in preparation). Authors: <strong>H. Nezhadmohammad</strong>, R. Asvadi, and A. Pirhadi</li>
+            <li>
+                <strong>H. Nezhadmohammad</strong>, R. Asvadi, and A. Pirhadi,
+                “Outdoor-to-Indoor Spherical-Wave Channel Modeling Using
+                Multi-Panel BD-RIS: Spatial Multiplexing and Inter-Panel
+                Spacing Analysis,” manuscript in preparation.
+            </li>
+        </ul>
+
+        <h3>Selected Research Manuscripts</h3>
+        <ul>
+            <li>
+                <strong>H. Nezhadmohammad</strong>, R. Asvadi, and A. Pirhadi,
+                “Beyond-Diagonal RIS-aided Outdoor-to-Indoor mmWave Communications,” 2025.
+                <a href="manuscripts/bdris_outdoor_to_indoor_draft_Hesam_Aug_8th_2025.pdf"
+                   target="_blank"
+                   rel="noopener noreferrer">[PDF]</a>
+                <a href="https://github.com/hesaminzh/REPOSITORY-1"
+                   target="_blank"
+                   rel="noopener noreferrer">[code]</a>
+            </li>
+
+            <li>
+                <strong>H. Nezhadmohammad</strong>, R. Asvadi, and A. Pirhadi,
+                “Impact of Beyond-Diagonal RIS Inter-Panel Spacing in mmWave Communications,” 2026.
+                <a href="manuscripts/bdris_mmWave_globecom.pdf"
+                   target="_blank"
+                   rel="noopener noreferrer">[PDF]</a>
+                <a href="https://github.com/hesaminzh/REPOSITORY-2"
+                   target="_blank"
+                   rel="noopener noreferrer">[code]</a>
+            </li>
         </ul>
     </section>
+
     <hr>
     <section>
         <h2>Teaching</h2>
@@ -160,7 +239,7 @@
 
         <p>
             Two-Stage BD-RIS Beamforming Design Without a Direct BS–User Link
-            <a href="https://github.com/hesaminzh/bdris-twostage-report/tree/main/simulations" target="_blank" rel="noopener noreferrer">[code</a>,
+            <a href="https://github.com/hesaminzh/bdris-twostage-report/tree/main/simulations" target="_blank" rel="noopener noreferrer">[code]</a>,
             <a href="https://github.com/hesaminzh/bdris-twostage-report/blob/main/assets/report_two_stage_no_direct.pdf" target="_blank" rel="noopener noreferrer"> report]</a>
         </p>
 
