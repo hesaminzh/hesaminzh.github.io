@@ -4,142 +4,215 @@
     <meta charset="utf-8">
     <title>Hesam Nezhadmohammad — Wireless Communications</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Simple, readable defaults -->
+    <meta name="description" content="Research in wireless communications, reconfigurable intelligent surfaces, and multi-antenna signal processing.">
+    <meta property="og:title" content="Hesam Nezhadmohammad — Wireless Communications">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hesaminzh.github.io/">
+    <meta property="og:description" content="Research in mmWave communications and RIS/BD-RIS.">
     <style>
-        <!-- :root { --max: 820px; --fg: #111; --muted:#555; --link:#0b57d0; } -->
         :root {
             --max: 920px;
             --fg: #111;
             --muted: #555;
             --link: #0b57d0;
+            --border: #e6e6e6;
         }
 
+        *, *::before, *::after { box-sizing: border-box; }
         html, body {
             margin: 0;
             padding: 0;
-            font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
             color: var(--fg);
             background: #fff;
             line-height: 1.55;
         }
+        a { color: var(--link); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        a:focus-visible, summary:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+        header, main, footer { max-width: var(--max); margin: auto; padding: 20px 24px; }
+        header { padding-top: 36px; }
+        h1 { font-size: 1.9rem; margin: 0 0 4px; }
+        h2 { font-size: 1.2rem; margin: 24px 0 8px; }
+        h3 { font-size: 1rem; margin: 14px 0 6px; }
+        h4 { font-size: 1rem; margin: 0 0 4px; }
+        img.profile { width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 1px solid #ddd; }
+        .muted { color: var(--muted); }
+        .grid { display: grid; gap: 12px; }
+        .two { display: grid; grid-template-columns: 1fr auto; align-items: baseline; }
+        .pill { display: inline-block; border: 1px solid #ddd; border-radius: 999px; padding: 4px 10px; margin: 4px 6px 0 0; font-size: .9rem; }
+        hr { border: 0; border-top: 1px solid var(--border); margin: 20px 0; }
 
-        a {
-            color: var(--link);
+        /* Keep the existing two-photo thesis gallery. */
+        .gallery { display: flex; flex-direction: column; align-items: center; margin: 10px 0 0; }
+        .gallery-row { display: flex; gap: 12px; justify-content: center; width: 100%; }
+        .gallery-row a { width: min(48%, 420px); }
+        .gallery-row img { display: block; width: 100%; border-radius: 6px; border: 1px solid #ddd; cursor: pointer; }
+        .gallery figcaption { margin-top: 6px; font-size: .85rem; color: #6c757d; text-align: center; width: 100%; }
+
+        /* Manuscript figure galleries: minimal styling consistent with the site. */
+        .manuscript { margin: 18px 0 28px; }
+        .manuscript + .manuscript { border-top: 1px solid var(--border); padding-top: 25px; }
+        .manuscript-title { font-size: 1.02rem; line-height: 1.4; }
+        .manuscript-meta { margin: 2px 0 12px; color: var(--muted); font-size: .9rem; }
+        .manuscript-meta a { margin-left: 8px; white-space: nowrap; }
+        .figure-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .figure-card { min-width: 0; margin: 0; padding: 10px; border: 1px solid var(--border); border-radius: 9px; background: #fff; }
+        .figure-card a { display: flex; align-items: center; justify-content: center; background: #fff; }
+        .figure-card img {
+            display: block;
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            transition: transform .15s ease;
+        }
+        .figure-card a:hover img { transform: scale(1.015); }
+        .figure-card figcaption { margin: 8px 2px 0; text-align: center; color: var(--muted); font-size: .84rem; }
+        .figure-card--wide { grid-column: 1 / -1; }
+        .figure-card--wide img { height: 280px; }
+        .figure-hint { color: var(--muted); font-size: .82rem; margin: 8px 0 12px; }
+        .additional-figures { border-top: 1px solid var(--border); padding-top: 10px; }
+        .additional-figures summary { color: var(--link); cursor: pointer; font-size: .92rem; width: fit-content; }
+        .additional-figures[open] summary { margin-bottom: 14px; }
+
+
+        /* Short research summary and readable scientific captions. */
+        .manuscript-context { max-width: 820px; font-size: .91rem; }
+        .manuscript-context p { margin: 0 0 9px; }
+        .architecture-key { color: var(--muted); }
+        .figure-card figcaption { text-align: left; margin-top: 10px; line-height: 1.47; }
+        .figure-caption-title { display: block; color: var(--fg); font-weight: 650; font-size: .88rem; margin-bottom: 4px; }
+        .figure-caption-detail { display: block; color: var(--muted); font-size: .83rem; }
+        .additional-figures { margin-top: 14px; }
+        .algorithm-intro { color: var(--muted); font-size: .9rem; margin: 2px 0 16px; }
+        .figure-grid--algorithms { grid-template-columns: 1fr; max-width: 760px; margin: 0 auto; }
+        .figure-grid--spacing-algorithms { max-width: 640px; }
+        .algorithm-card { padding: 12px; }
+        .algorithm-card figcaption { margin: 12px 4px 2px; padding: 0; }
+
+        /* Long algorithms are presented as short PDF teaser cards.
+           The WebP remains a visual cue rather than a page-length image. */
+        .algorithm-card .algorithm-link {
+            display: block;
+            color: inherit;
             text-decoration: none;
+            background: transparent;
+            border-radius: 9px;
         }
-
-        a:hover {
-            text-decoration: underline;
+        .algorithm-preview-box {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 184px;
+            overflow: hidden;
+            border-radius: 9px;
+            border: 1px solid #d7e0ed;
+            background: #f6f8fb;
+            transition: border-color .16s ease, box-shadow .16s ease, transform .16s ease;
         }
-
-        header, main, footer {
-            max-width: var(--max);
-            margin: auto;
-            padding: 20px 24px;
-        }
-
-        header {
-            padding-top: 36px;
-        }
-
-        h1 {font-size:1.9rem;margin:0 0 4px}
-        h2 {font-size:1.2rem;margin:24px 0 8px}
-        h3 {font-size:1rem;margin:14px 0 6px}
-
-        img.profile {
-            width: 150px;
-            height: 150px;
+        .algorithm-card .algorithm-preview-box img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            max-height: none;
             object-fit: cover;
-            border-radius: 50%;
-            border: 1px solid #ddd;
+            object-position: top center;
+            opacity: .22;
+            filter: grayscale(1);
+            transform: none;
         }
-        .muted{color:var(--muted)}
-        .grid{display:grid;gap:12px}
-        .two{grid-template-columns: 1fr auto; align-items:baseline}
-        .pill{display:inline-block;border:1px solid #ddd;border-radius:999px;padding:4px 10px;margin:4px 6px 0 0;font-size:0.9rem}
-        hr{border:0;border-top:1px solid #e6e6e6;margin:20px 0}
-        /* responsive */
-        @media (max-width:640px){ .two{grid-template-columns:1fr} }
+        .algorithm-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 7px;
+            padding: 14px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,.8));
+        }
+        .algorithm-overlay-kicker {
+            display: block;
+            font-weight: 700;
+            font-size: .78rem;
+            letter-spacing: .045em;
+            text-transform: uppercase;
+            color: #465875;
+        }
+        .algorithm-overlay-title {
+            display: block;
+            font-size: 1rem;
+            line-height: 1.35;
+            font-weight: 650;
+            color: var(--fg);
+        }
+        .algorithm-open-hint {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 6px 13px;
+            border: 1px solid #b9c9e6;
+            border-radius: 999px;
+            background: #fff;
+            color: var(--link);
+            font-size: .84rem;
+            font-weight: 650;
+        }
+        .algorithm-card .algorithm-link:hover .algorithm-preview-box,
+        .algorithm-card .algorithm-link:focus-visible .algorithm-preview-box {
+            border-color: #91afd9;
+            box-shadow: 0 5px 18px rgba(35, 56, 89, .11);
+            transform: translateY(-2px);
+        }
+        .algorithm-card .algorithm-link:hover img,
+        .algorithm-card .algorithm-link:focus-visible img { transform: none; }
 
-        <!-- img.profile { -->
-        <!--     width: 130px; -->
-        <!--     height: 130px; -->
-        <!--     object-fit: cover; -->
-        <!--     border-radius: 50%; -->
-        <!--     border: 2px solid #ddd; -->
-        <!-- } -->
-
-
-
-    .gallery {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* centers caption and the row */
-        margin-top: 10px;
-    }
-
-    .gallery-row a {
-        width: 48%;
-        display: inline-block;
-    }
-
-    .gallery-row img {
-        width: 100%;          /* fills its <a> container */
-        border-radius: 6px;
-        border: 1px solid #ddd;
-        cursor: pointer;
-    }
-
-    .gallery figcaption {
-        margin-top: 6px;
-        font-size: 0.85em;
-        color: #6c757d;
-        text-align: center;
-        width: 100%; /* optional, but keeps caption centered nicely */
-    }
+        @media (max-width: 640px) {
+            header.grid { grid-template-columns: 1fr !important; justify-items: start; }
+            .two { grid-template-columns: 1fr; }
+            .figure-grid { grid-template-columns: 1fr; }
+            .figure-card--wide { grid-column: auto; }
+            .figure-card img { height: 210px; }
+            .figure-card--wide img { height: 230px; }
+            .algorithm-preview-box { height: 164px; }
+            .algorithm-overlay-title { font-size: .94rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .figure-card img { transition: none; }
+            .figure-card a:hover img { transform: none; }
+            .algorithm-preview-box { transition: none; }
+            .algorithm-card .algorithm-link:hover .algorithm-preview-box,
+            .algorithm-card .algorithm-link:focus-visible .algorithm-preview-box { transform: none; }
+        }
     </style>
-    <!-- Open Graph basics -->
-    <meta property="og:title" content="Hesam Nezhadmohammad — Wireless Communications">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://USERNAME.github.io/">
-    <meta property="og:description" content="Research in mmWave communications, and RIS/BD-RIS.">
-    <!-- (Optional) MathJax if you show formulas -->
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-
-<!-- <header class="grid" style="align-items:center;grid-template-columns:120px 1fr;gap:20px;"> -->
-    <header class="grid"
-            style="align-items:center;
-                   grid-template-columns:150px 1fr;
-                   gap:24px;">
+<header class="grid" style="align-items:center;grid-template-columns:150px 1fr;gap:24px;">
     <img src="images/profile.jpeg" alt="Profile photo" class="profile">
     <div>
         <h1>Hesam Nezhadmohammad</h1>
-        <div class="muted">Wireless Communications · RIS · BD-RIS · ISAC</div>
+        <div class="muted">Wireless Communications</div>
         <div class="muted">
-            <a href="mailto:hesaminzh@gmail.com">Email</a> |
-            <!-- <a href="https://scholar.google.com/citations?user=YOURID">Google Scholar</a> · -->
-            <a href="https://github.com/hesaminzh" target="_blank" rel="noopener noreferrer">GitHub</a> |
-            <a href="CV/Hesam_CV.pdf" target="_blank" rel="noopener noreferrer">CV (PDF)</a>
-            <!-- <a href="CV/Hesam_CV.pdf"><strong>Download CV</strong></a> -->
+            <a href="mailto:hesam.nezhadmohammad@gmail.com">Email</a> |
+            <a href="https://github.com/hesaminzh" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
     </div>
 </header>
 <main>
 <section>
-    <div class="two">
-        <h2>Research Interests</h2>
-    </div>
-    <p>
-    Wireless communications, reconfigurable intelligent surfaces (RIS),
-    beyond-diagonal RIS (BD-RIS), multi-antenna signal processing
-    </p>
+    <div class="two"><h2>Research Interests</h2></div>
+    <p>Wireless communications, reconfigurable intelligent surfaces (RIS),
+       beyond-diagonal RIS (BD-RIS), multi-antenna signal processing</p>
     <div>
         <span class="pill">RIS</span>
         <span class="pill">BD-RIS</span>
         <span class="pill">mmWave · sub-THz</span>
-        <span class="pill">Optimization</span>
+        <span class="pill">ISAC</span>
+        <span class="pill">BackCom</span>
+        <span class="pill">Mathematical Optimization</span>
         <span class="pill">MATLAB · Python</span>
     </div>
 </section>
@@ -147,128 +220,357 @@
 <section>
     <h2>About</h2>
     <p>
-        I hold an M.Sc. in Telecommunications Engineering from 
-        <strong>
-            <a href="https://www.topuniversities.com/universities/shahid-beheshti-university-sbu" target="_blank" rel="noopener noreferrer">
-                Shahid Beheshti University
-            </a>
-        </strong> (<strong>National University of Iran</strong>). 
-        My research focuses on <strong>signal processing</strong> and <strong>optimization</strong> 
-        for wireless communications, particularly in 
-        <strong>reconfigurable intelligent surface (RIS)</strong>, 
+        I hold an M.Sc. in Telecommunications Engineering from
+        <strong><a href="https://www.topuniversities.com/universities/shahid-beheshti-university-sbu"
+                   target="_blank" rel="noopener noreferrer">Shahid Beheshti University</a></strong>
+        (<strong>National University of Iran</strong>).
+        My research focuses on <strong>signal processing</strong> and <strong>optimization</strong>
+        for wireless communications, particularly in
+        <strong>reconfigurable intelligent surface (RIS)</strong>,
         <strong>beyond-diagonal RIS (BD-RIS)</strong>, and
         <strong>multi-antenna signal processing</strong>.
-        I am passionate about developing and analyzing advanced methods to enhance the performance and efficiency 
+        I am passionate about developing and analyzing advanced methods to enhance the performance and efficiency
         of next-generation wireless systems.
     </p>
-
-    <!-- Unified Caption -->
     <figure class="gallery">
         <div class="gallery-row">
-
             <a href="images/MSc_Thesis_Defense_Presentation.jpeg" target="_blank" rel="noopener noreferrer">
-                <img src="images/MSc_Thesis_Defense_Presentation_low_quality.jpeg" alt="Graduation presentation 1">
+                <img src="images/MSc_Thesis_Defense_Presentation_low_quality.jpeg" alt="MSc thesis presentation photograph">
             </a>
-
             <a href="images/MSc_Thesis_Defense.jpeg" target="_blank" rel="noopener noreferrer">
-                <img src="images/MSc_Thesis_Defense_low_quality.jpeg" alt="Graduation presentation 2">
+                <img src="images/MSc_Thesis_Defense_low_quality.jpeg" alt="MSc thesis defense photograph">
             </a>
-
         </div>
-
-        <figcaption class="muted">
-            MSc Thesis defense at Shahid Beheshti University
-        </figcaption>
+        <figcaption class="muted">MSc Thesis defense at Shahid Beheshti University</figcaption>
     </figure>
-
 </section>
+<hr>
+<section>
+    <h2>Publications</h2>
+    <ul>
+        <li>
+            <strong>H. Nezhadmohammad</strong>, R. Asvadi, and A. Pirhadi,
+            “Outdoor-to-Indoor Spherical-Wave Channel Modeling Using
+            Multi-Panel BD-RIS: Spatial Multiplexing and Inter-Panel
+            Spacing Analysis,” IEEE OJ-COMS 2026.
+        </li>
+    </ul>
 
-
-    <hr>
-    <section>
-        <h2>Publications</h2>
-
-        <h3>Manuscript in Preparation</h3>
-        <ul>
-            <li>
-                <strong>H. Nezhadmohammad</strong>, R. Asvadi, and A. Pirhadi,
-                “Outdoor-to-Indoor Spherical-Wave Channel Modeling Using
-                Multi-Panel BD-RIS: Spatial Multiplexing and Inter-Panel
-                Spacing Analysis,” 2026.
-            </li>
-        </ul>
-
-        <h3>Selected Research Manuscripts</h3>
-        <ul>
-            <li>
-                <strong>H. Nezhadmohammad</strong>, R. Asvadi, and A. Pirhadi,
-                “Beyond-Diagonal RIS-aided Outdoor-to-Indoor mmWave Communications,” 2025.
-                <a href="manuscripts/bdris_outdoor_to_indoor_draft_Hesam_Aug_8th_2025.pdf"
-                   target="_blank"
-                   rel="noopener noreferrer">[PDF]</a>
-                <a href="https://github.com/hesaminzh/hesaminzh.github.io/tree/main/code/manuscript_1"
-                   target="_blank"
-                   rel="noopener noreferrer">[code]</a>
-            </li>
-
-            <li>
-                <strong>H. Nezhadmohammad</strong>, R. Asvadi, and A. Pirhadi,
-                “Impact of Beyond-Diagonal RIS Inter-Panel Spacing in mmWave Communications,” 2026.
-                <a href="manuscripts/bdris_mmWave_globecom.pdf"
-                   target="_blank"
-                   rel="noopener noreferrer">[PDF]</a>
-                <a href="https://github.com/hesaminzh/hesaminzh.github.io/tree/main/code/manuscript_2"
-                   target="_blank"
-                   rel="noopener noreferrer">[code]</a>
-            </li>
-        </ul>
-    </section>
-
-    <hr>
-    <section>
-        <h2>Teaching</h2>
-        <p>Teaching Assistant — Wireless Communications (Fall 2024), Instructor: Dr. Reza Asvadi</p>
-    </section>
-    <hr>
-    <section>
-        <h2>Projects</h2>
-
+    <h3>Selected Research Manuscripts</h3>
+        <article class="manuscript">
+            <h4 class="manuscript-title">Beyond-Diagonal RIS-aided Outdoor-to-Indoor mmWave Communications</h4>
+            <p class="manuscript-meta">
+                <strong>H. Nezhadmohammad</strong>, R. Asvadi, and A. Pirhadi (2025).
+                <a href="manuscripts/bdris_outdoor_to_indoor_draft_Hesam_Aug_8th_2025.pdf" target="_blank" rel="noopener noreferrer">[PDF]</a>
+                <a href="https://github.com/hesaminzh/hesaminzh.github.io/tree/main/code/manuscript_1" target="_blank" rel="noopener noreferrer">[code]</a>
+            </p>
+            <div class="manuscript-context">
+              <p><strong>Research focus.</strong> How should an outdoor base station and a reconfigurable surface be jointly optimized to serve indoor mmWave users when walls and blockages weaken their signals? We compare RIS connection architectures, optimization methods, and their effects on data rate, runtime, and outage.</p>
+              <p class="architecture-key"><strong>Connection types:</strong> <abbr title="Fully connected">FC</abbr> allows interactions among all RIS elements; <abbr title="Group connected">GC</abbr> connects elements within separate groups; <abbr title="Single connected">SC</abbr> controls elements individually. <strong>WSR</strong> (weighted sum rate) is the total of the users' rates after applying their assigned weights; higher values indicate better aggregate performance.</p>
+            </div>
+            <div class="figure-gallery" aria-label="Results and algorithms for Beyond-Diagonal RIS-aided Outdoor-to-Indoor mmWave Communications">
+              <div class="figure-grid figure-grid--featured">
+                <figure class="figure-card figure-card--wide">
+                  <a href="figures/manuscript_1/outdoor_to_indoor.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original vector PDF: Outdoor-to-indoor mmWave communication scenario">
+                    <img src="figures/manuscript_1/thumbnails/outdoor_to_indoor.webp" alt="Illustration of an outdoor base station serving indoor users with a reconfigurable surface and alternative RIS connection patterns." loading="lazy" decoding="async">
+                  </a>
+                  <figcaption>
+                    <strong class="figure-caption-title">Outdoor-to-indoor mmWave communication scenario</strong>
+                    <span class="figure-caption-detail">A surface at the building boundary redirects signals from an outdoor base station toward indoor users. The inset introduces three ways to connect and control its elements.</span>
+                  </figcaption>
+                </figure>
+                <figure class="figure-card">
+                  <a href="figures/manuscript_1/wsr_vs_blockage-eps-converted-to.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original vector PDF: Throughput robustness in blocked environments">
+                    <img src="figures/manuscript_1/thumbnails/wsr_vs_blockage-eps-converted-to.webp" alt="Weighted sum rate versus blockage density, showing degradation of five architectures and reference schemes." loading="lazy" decoding="async">
+                  </a>
+                  <figcaption>
+                    <strong class="figure-caption-title">Throughput robustness in blocked environments</strong>
+                    <span class="figure-caption-detail">Optimized RIS designs maintain greater WSR than random phase control and the no-RIS baseline when blockage is moderate. As blockage becomes severe, the throughput advantage narrows.</span>
+                  </figcaption>
+                </figure>
+                <figure class="figure-card">
+                  <a href="figures/manuscript_1/outage_vs_blockage-eps-converted-to.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original vector PDF: Link reliability in blocked environments">
+                    <img src="figures/manuscript_1/thumbnails/outage_vs_blockage-eps-converted-to.webp" alt="Outage probability versus blockage density for fully, group, and single connected RIS and the comparison baselines." loading="lazy" decoding="async">
+                  </a>
+                  <figcaption>
+                    <strong class="figure-caption-title">Link reliability in blocked environments</strong>
+                    <span class="figure-caption-detail">The fully connected design achieves the lowest outage across the plotted blockage range, followed closely by the group connected design. Severe blockage drives every scheme toward high outage.</span>
+                  </figcaption>
+                </figure>
+              </div>
+              <p class="figure-hint">Select a plot to open its vector PDF at full resolution.</p>
+              <details class="additional-figures">
+                <summary>Explore other simulation results (9)</summary>
+                <div class="figure-grid figure-grid--more">
+                <figure class="figure-card">
+                  <a href="figures/manuscript_1/figure1-eps-converted-to.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original vector PDF: Throughput versus the number of RIS elements">
+                    <img src="figures/manuscript_1/thumbnails/figure1-eps-converted-to.webp" alt="Weighted sum rate versus the number of RIS elements, comparing proposed, WMMSE-CVX MO, two-stage FP, and RZF MO methods for fully, group, and single connected surfaces." loading="lazy" decoding="async">
+                  </a>
+                  <figcaption>
+                    <strong class="figure-caption-title">Throughput versus the number of RIS elements</strong>
+                    <span class="figure-caption-detail">More elements increase weighted sum rate (WSR). The proposed optimization tracks the strongest benchmark closely and exceeds the two-stage FP and RZF alternatives; fully connected surfaces generally achieve the highest rates.</span>
+                  </figcaption>
+                </figure>
+                <figure class="figure-card">
+                  <a href="figures/manuscript_1/figure2-eps-converted-to.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original vector PDF: Computational time versus RIS size">
+                    <img src="figures/manuscript_1/thumbnails/figure2-eps-converted-to.webp" alt="Average CPU time on a logarithmic scale versus RIS element count for four optimization methods and three RIS connection architectures." loading="lazy" decoding="async">
+                  </a>
+                  <figcaption>
+                    <strong class="figure-caption-title">Computational time versus RIS size</strong>
+                    <span class="figure-caption-detail">Runtime rises as the surface grows. The proposed design is substantially faster than the WMMSE-CVX manifold benchmark, but uses more computation than the simpler two-stage FP and RZF approaches.</span>
+                  </figcaption>
+                </figure>
+                <figure class="figure-card">
+                  <a href="figures/manuscript_1/figure3-eps-converted-to.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original vector PDF: Transmit power and number of served users">
+                    <img src="figures/manuscript_1/thumbnails/figure3-eps-converted-to.webp" alt="Weighted sum rate versus transmit power for two, four, and six users, comparing fully, group, and single connected RIS architectures." loading="lazy" decoding="async">
+                  </a>
+                  <figcaption>
+                    <strong class="figure-caption-title">Transmit power and number of served users</strong>
+                    <span class="figure-caption-detail">WSR increases with transmit power for each tested user count (2, 4, and 6). Comparing the curves also shows how additional connections between RIS elements affect the attainable sum rate.</span>
+                  </figcaption>
+                </figure>
+                <figure class="figure-card">
+                  <a href="figures/manuscript_1/figure3a-eps-converted-to.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original vector PDF: Architecture gains across transmit power: first setting">
+                    <img src="figures/manuscript_1/thumbnails/figure3a-eps-converted-to.webp" alt="Stacked comparison of weighted sum rate across transmit power and user counts, highlighting increments from single to group to fully connected RIS." loading="lazy" decoding="async">
+                  </a>
+                  <figcaption>
+                    <strong class="figure-caption-title">Architecture gains across transmit power: first setting</strong>
+                    <span class="figure-caption-detail">A stacked view makes the performance gaps visible: the single connected rate forms the baseline, with additional contributions showing the improvements associated with group and fully connected designs.</span>
+                  </figcaption>
+                </figure>
+                <figure class="figure-card">
+                  <a href="figures/manuscript_1/figure3b-eps-converted-to.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original vector PDF: Architecture gains across transmit power: second setting">
+                    <img src="figures/manuscript_1/thumbnails/figure3b-eps-converted-to.webp" alt="Companion stacked WSR plot versus transmit power for two, four, and six users under a second simulation configuration." loading="lazy" decoding="async">
+                  </a>
+                  <figcaption>
+                    <strong class="figure-caption-title">Architecture gains across transmit power: second setting</strong>
+                    <span class="figure-caption-detail">This companion stacked comparison shows how the separation between single, group, and fully connected designs changes under another simulation setting. The fully connected configuration has the largest displayed rates.</span>
+                  </figcaption>
+                </figure>
+                <figure class="figure-card">
+                  <a href="figures/manuscript_1/figure4-eps-converted-to.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original vector PDF: Convergence of the joint optimization">
+                    <img src="figures/manuscript_1/thumbnails/figure4-eps-converted-to.webp" alt="Weighted sum rate versus optimization iterations for fully, group, and single connected surfaces under three blockage densities." loading="lazy" decoding="async">
+                  </a>
+                  <figcaption>
+                    <strong class="figure-caption-title">Convergence of the joint optimization</strong>
+                    <span class="figure-caption-detail">WSR grows and gradually stabilizes over the iterations for all three RIS architectures. The plots also reveal the substantial rate penalty from mild and heavy blockage.</span>
+                  </figcaption>
+                </figure>
+                <figure class="figure-card">
+                  <a href="figures/manuscript_1/figure5-eps-converted-to.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original vector PDF: Rate sensitivity to blockage density">
+                    <img src="figures/manuscript_1/thumbnails/figure5-eps-converted-to.webp" alt="Weighted sum rate versus blockage density for fully, group, and single connected surfaces, random phase control, and no RIS." loading="lazy" decoding="async">
+                  </a>
+                  <figcaption>
+                    <strong class="figure-caption-title">Rate sensitivity to blockage density</strong>
+                    <span class="figure-caption-detail">As the environment becomes more obstructed, WSR falls for every design. Optimizing RIS connections and coefficients preserves an advantage over random phases and operation without an RIS.</span>
+                  </figcaption>
+                </figure>
+                <figure class="figure-card">
+                  <a href="figures/manuscript_1/figure6-eps-converted-to.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original vector PDF: Outage probability under increasing blockage">
+                    <img src="figures/manuscript_1/thumbnails/figure6-eps-converted-to.webp" alt="Outage probability versus blockage density, comparing fully, group, and single connected RIS architectures and two reference schemes." loading="lazy" decoding="async">
+                  </a>
+                  <figcaption>
+                    <strong class="figure-caption-title">Outage probability under increasing blockage</strong>
+                    <span class="figure-caption-detail">The probability of failing to meet the communication target rises with blockage. The fully connected architecture has the lowest outage among the plotted designs, especially at lower blockage densities.</span>
+                  </figcaption>
+                </figure>
+                <figure class="figure-card">
+                  <a href="figures/manuscript_1/wsr_3D-eps-converted-to.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original vector PDF: Joint influence of RIS size and blockage">
+                    <img src="figures/manuscript_1/thumbnails/wsr_3D-eps-converted-to.webp" alt="Three-dimensional weighted sum rate surfaces over RIS element count and blockage density for five connection and reference schemes." loading="lazy" decoding="async">
+                  </a>
+                  <figcaption>
+                    <strong class="figure-caption-title">Joint influence of RIS size and blockage</strong>
+                    <span class="figure-caption-detail">The three-dimensional surfaces show how WSR depends on both RIS element count and blockage density: adding elements is most beneficial when the propagation environment is relatively unobstructed.</span>
+                  </figcaption>
+                </figure>
+                </div>
+              </details>
+              <details class="additional-figures algorithm-figures">
+                <summary>Explore the optimization algorithms (2)</summary>
+                <p class="algorithm-intro">The two routines connect the simulations to their mathematical implementation: Algorithm 1 optimizes the base station's transmitted signals, and Algorithm 2 jointly updates the transmit precoder and RIS configuration.</p>
+                <div class="figure-grid figure-grid--algorithms">
+                <figure class="figure-card algorithm-card">
+                  <a class="algorithm-link" href="figures/manuscript_1/algorithm_1_dual_wmmse.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Algorithm 1, dual-based WMMSE precoding, as a full-resolution PDF in a new tab">
+                    <span class="algorithm-preview-box">
+                      <img src="figures/manuscript_1/thumbnails/algorithm_1_dual_wmmse.webp" alt="Cropped preview of Algorithm 1 for dual-based WMMSE transmit precoding." loading="lazy" decoding="async">
+                      <span class="algorithm-overlay" aria-hidden="true">
+                        <span class="algorithm-overlay-kicker">Algorithm 1</span>
+                        <span class="algorithm-overlay-title">Dual-based WMMSE precoding</span>
+                        <span class="algorithm-open-hint">Open full PDF ↗</span>
+                      </span>
+                    </span>
+                  </a>
+                  <figcaption>
+                    <strong class="figure-caption-title">Algorithm 1: dual-based WMMSE precoding</strong>
+                    <span class="figure-caption-detail">Optimizes the transmit precoding matrix by repeatedly updating receiver coefficients, user weights, and the power constrained precoder. A bisection search selects the dual variable, and the loop stops when the WSR change is small.</span>
+                  </figcaption>
+                </figure>
+                <figure class="figure-card algorithm-card">
+                  <a class="algorithm-link" href="figures/manuscript_1/algorithm_2_alternating_optimization.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Algorithm 2, alternating optimization, as a full-resolution PDF in a new tab">
+                    <span class="algorithm-preview-box">
+                      <img src="figures/manuscript_1/thumbnails/algorithm_2_alternating_optimization.webp" alt="Cropped preview of Algorithm 2 for alternating precoder and RIS configuration optimization." loading="lazy" decoding="async">
+                      <span class="algorithm-overlay" aria-hidden="true">
+                        <span class="algorithm-overlay-kicker">Algorithm 2</span>
+                        <span class="algorithm-overlay-title">Joint transmit and RIS optimization</span>
+                        <span class="algorithm-open-hint">Open full PDF ↗</span>
+                      </span>
+                    </span>
+                  </a>
+                  <figcaption>
+                    <strong class="figure-caption-title">Algorithm 2: joint transmit and RIS optimization</strong>
+                    <span class="figure-caption-detail">Alternates between the WMMSE precoder update from Algorithm 1 and manifold-based optimization of the RIS scattering matrix. The final step enforces the chosen fully, group, or single connected hardware structure.</span>
+                  </figcaption>
+                </figure>
+                </div>
+              </details>
+            </div>
+        </article>
+        <article class="manuscript">
+            <h4 class="manuscript-title">Impact of Beyond-Diagonal RIS Inter-Panel Spacing in mmWave Communications</h4>
+            <p class="manuscript-meta">
+                <strong>H. Nezhadmohammad</strong>, R. Asvadi, and A. Pirhadi (2026).
+                <a href="manuscripts/bdris_mmWave_globecom.pdf" target="_blank" rel="noopener noreferrer">[PDF]</a>
+                <a href="https://github.com/hesaminzh/hesaminzh.github.io/tree/main/code/manuscript_2" target="_blank" rel="noopener noreferrer">[code]</a>
+            </p>
+            <div class="manuscript-context">
+              <p><strong>Research focus.</strong> How does the distance between RIS panels influence the achievable data rate in outdoor-to-indoor mmWave communication? We study this question across different RIS sizes and connection architectures, then optimize panel spacing together with the transmit and RIS configurations.</p>
+              <p class="architecture-key"><strong>How to read the results.</strong> <strong>WSR</strong> (weighted sum rate) measures the combined users' data rates after weighting; higher is better. <strong>M</strong> is the number of RIS elements per panel. Stem-connected and tree-connected RIS allow structured interactions between elements, whereas single-connected RIS controls each element independently. The plots compare the proposed optimized-spacing design with a reference using fixed spacing.</p>
+            </div>
+            <div class="figure-gallery" aria-label="Simulation results and spacing optimization method for multi-panel beyond-diagonal RIS">
+              <div class="figure-grid figure-grid--featured">
+            <figure class="figure-card figure-card--wide">
+              <a href="figures/manuscript_2/system_model.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original PDF: Multi-panel RIS-assisted outdoor-to-indoor link">
+                <img src="figures/manuscript_2/thumbnails/system_model.webp" alt="Illustration of an outdoor multi-antenna base station directing radio beams toward multiple RIS panels across the facade of a building, with paths toward indoor users." loading="lazy" decoding="async">
+              </a>
+              <figcaption>
+                <strong class="figure-caption-title">Multi-panel RIS-assisted outdoor-to-indoor link</strong>
+                <span class="figure-caption-detail">An outdoor base station illuminates several RIS panels mounted on a building facade to help deliver mmWave signals to indoor users. The spatial arrangement motivates treating the distance between panels as a design variable.</span>
+              </figcaption>
+            </figure>
+            <figure class="figure-card">
+              <a href="figures/manuscript_2/wsr_vs_spacing_M_32-eps-converted-to.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original PDF: Why panel spacing matters: 32 elements per panel">
+                <img src="figures/manuscript_2/thumbnails/wsr_vs_spacing_M_32-eps-converted-to.webp" alt="Weighted sum rate plotted against inter-panel spacing from roughly 0.5 to 8 m at M equal to 32, with a peak around 4 m for stem, tree, and single connected RIS architectures." loading="lazy" decoding="async">
+              </a>
+              <figcaption>
+                <strong class="figure-caption-title">Why panel spacing matters: 32 elements per panel</strong>
+                <span class="figure-caption-detail">For M = 32, WSR rises as the panels move apart, reaches its highest plotted value near 4 m, and then declines. The stem-connected architecture consistently provides the largest rate, followed by tree-connected and single-connected designs.</span>
+              </figcaption>
+            </figure>
+            <figure class="figure-card">
+              <a href="figures/manuscript_2/wsr_vs_elements_K_4-eps-converted-to.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original PDF: Benefits of optimizing spacing as the surface grows: K = 4">
+                <img src="figures/manuscript_2/thumbnails/wsr_vs_elements_K_4-eps-converted-to.webp" alt="Weighted sum rate versus elements per panel for K equal to 4, comparing proposed variable-spacing optimization with fixed-spacing pp-ADMM for stem, tree, and single connected RIS structures." loading="lazy" decoding="async">
+              </a>
+              <figcaption>
+                <strong class="figure-caption-title">Benefits of optimizing spacing as the surface grows: K = 4</strong>
+                <span class="figure-caption-detail">WSR increases with the number of elements per panel. The proposed spacing optimization increasingly improves on a pp-ADMM design that holds spacing fixed, especially for larger panels. Stem-connected RIS gives the strongest rates among the plotted architectures.</span>
+              </figcaption>
+            </figure>
+              </div>
+              <p class="figure-hint">Select a figure to open the original high-resolution PDF.</p>
+              <details class="additional-figures">
+                <summary>Explore other simulation results (4)</summary>
+                <div class="figure-grid figure-grid--more">
+            <figure class="figure-card">
+              <a href="figures/manuscript_2/wsr_vs_elements_K_2-eps-converted-to.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original PDF: Impact of RIS size with K = 2">
+                <img src="figures/manuscript_2/thumbnails/wsr_vs_elements_K_2-eps-converted-to.webp" alt="Weighted sum rate versus RIS elements per panel for K equal to 2, showing proposed variable-spacing methods against fixed-spacing pp-ADMM baselines for three RIS connection architectures." loading="lazy" decoding="async">
+              </a>
+              <figcaption>
+                <strong class="figure-caption-title">Impact of RIS size with K = 2</strong>
+                <span class="figure-caption-detail">For K = 2, increasing the elements per panel improves WSR. Optimizing panel spacing produces a visible advantage over the fixed-spacing pp-ADMM reference as the panels become larger, with stem-connected and tree-connected structures exceeding the single-connected design.</span>
+              </figcaption>
+            </figure>
+            <figure class="figure-card">
+              <a href="figures/manuscript_2/wsr_vs_spacing_M_16-eps-converted-to.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original PDF: Optimal spacing with 16 elements per panel">
+                <img src="figures/manuscript_2/thumbnails/wsr_vs_spacing_M_16-eps-converted-to.webp" alt="Weighted sum rate versus distance between RIS panels at M equal to 16; stem connected, tree connected, and single connected curves peak near 3 m." loading="lazy" decoding="async">
+              </a>
+              <figcaption>
+                <strong class="figure-caption-title">Optimal spacing with 16 elements per panel</strong>
+                <span class="figure-caption-detail">For M = 16, all three connection architectures reach their highest plotted WSR near 3 m. Moving the panels either closer together or farther apart reduces performance, showing that maximizing spatial separation is not the objective.</span>
+              </figcaption>
+            </figure>
+            <figure class="figure-card">
+              <a href="figures/manuscript_2/wsr_vs_spacing_M_64-eps-converted-to.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original PDF: Larger panels shift the spacing-performance relationship">
+                <img src="figures/manuscript_2/thumbnails/wsr_vs_spacing_M_64-eps-converted-to.webp" alt="Weighted sum rate versus inter-panel spacing at M equal to 64; stem-connected WSR peaks around 4 to 5 m, with lower peaks for tree-connected and single-connected architectures." loading="lazy" decoding="async">
+              </a>
+              <figcaption>
+                <strong class="figure-caption-title">Larger panels shift the spacing-performance relationship</strong>
+                <span class="figure-caption-detail">For M = 64, the stem-connected design reaches a broad maximum around 4–5 m and substantially outperforms the other connection types. The tree-connected and single-connected designs peak at somewhat different spacings, illustrating the joint influence of geometry and hardware topology.</span>
+              </figcaption>
+            </figure>
+            <figure class="figure-card">
+              <a href="figures/manuscript_2/convergence_nm__tridiagonal__K_4.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original PDF: Convergence of the Nelder–Mead spacing search">
+                <img src="figures/manuscript_2/thumbnails/convergence_nm__tridiagonal__K_4.webp" alt="Nelder-Mead convergence chart for a tridiagonal configuration with K equal to 4, showing the mean simplex spread and shaded standard-deviation region decreasing toward zero over approximately 25 iterations." loading="lazy" decoding="async">
+              </a>
+              <figcaption>
+                <strong class="figure-caption-title">Convergence of the Nelder–Mead spacing search</strong>
+                <span class="figure-caption-detail">The blue mean curve and shaded standard-deviation band show how the spacing-search spread decreases over iterations for a tridiagonal configuration with K = 4. The spread approaches zero after roughly 20–25 iterations, indicating that the simplex contracts toward the stopping tolerance; this does not by itself establish global optimality.</span>
+              </figcaption>
+            </figure>
+                </div>
+              </details>
+              <details class="additional-figures algorithm-figures">
+                <summary>Explore the spacing optimization algorithm (1)</summary>
+                <p class="algorithm-intro">The procedure combines partially proximal ADMM (pp-ADMM) for the communication variables with an outer Nelder–Mead (NM) simplex search over inter-panel spacing. Its stopping test monitors the spread of the spacing candidates.</p>
+                <div class="figure-grid figure-grid--algorithms figure-grid--spacing-algorithms">
+            <figure class="figure-card algorithm-card">
+                  <a class="algorithm-link" href="figures/manuscript_2/algorithm_1_pp_admm_nelder_mead.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Algorithm 1, two-step pp-ADMM and Nelder–Mead spacing search, as a full-resolution PDF in a new tab">
+                    <span class="algorithm-preview-box">
+                      <img src="figures/manuscript_2/thumbnails/algorithm_1_pp_admm_nelder_mead.webp" alt="Cropped preview of the two-step pp-ADMM and Nelder–Mead spacing optimization algorithm." loading="lazy" decoding="async">
+                      <span class="algorithm-overlay" aria-hidden="true">
+                        <span class="algorithm-overlay-kicker">Algorithm 1</span>
+                        <span class="algorithm-overlay-title">pp-ADMM and Nelder–Mead spacing search</span>
+                        <span class="algorithm-open-hint">Open full PDF ↗</span>
+                      </span>
+                    </span>
+                  </a>
+                  <figcaption>
+                    <strong class="figure-caption-title">Two-step pp-ADMM and Nelder–Mead spacing optimization</strong>
+                    <span class="figure-caption-detail">For each candidate spacing, the inner partially proximal ADMM routine optimizes the communication and RIS variables. The outer Nelder–Mead search then updates a simplex of spacing candidates through reflection, expansion, contraction, or shrinkage until its spread meets the prescribed tolerance.</span>
+                  </figcaption>
+                </figure>
+                </div>
+              </details>
+            </div>
+        </article>
+</section>
+<hr>
+<section>
+    <h2>Teaching</h2>
+    <p>Teaching Assistant — Wireless Communications (Fall 2024), Instructor: Dr. Reza Asvadi</p>
+</section>
+<hr>
+<section>
+    <h2>Projects</h2>
     <p>
         Graph Theoretic Visualization of BD-RIS Sparsity Patterns
         <a href="https://github.com/hesaminzh/bdris-graph-architectures" target="_blank" rel="noopener noreferrer">[code]</a>
     </p>
-
     <p>
         Two-Stage BD-RIS Beamforming Design Without a Direct BS–User Link
         <a href="https://github.com/hesaminzh/bdris-twostage-report/tree/main/simulations" target="_blank" rel="noopener noreferrer">[code]</a>,
         <a href="https://github.com/hesaminzh/bdris-twostage-report/blob/main/assets/report_two_stage_no_direct.pdf" target="_blank" rel="noopener noreferrer">[report]</a>
     </p>
-
     <p>
         Beam-Hopping Spectrum Sharing Between Terrestrial and Non-Terrestrial Networks
         <a href="https://github.com/hesaminzh/beam-hopping-tn-ntn-spectrum-sharing/tree/main/simulation" target="_blank" rel="noopener noreferrer">[code]</a>,
         <a href="https://github.com/hesaminzh/beam-hopping-tn-ntn-spectrum-sharing/blob/main/report/report.pdf" target="_blank" rel="noopener noreferrer">[report]</a>
     </p>
-
     <p>
         LEO mmWave and sub-THz Cross-Link Interference
         <a href="https://github.com/hesaminzh/leo-mmwave-subthz-crosslink-interference/tree/main/simulation" target="_blank" rel="noopener noreferrer">[code]</a>,
         <a href="https://github.com/hesaminzh/leo-mmwave-subthz-crosslink-interference/blob/main/report/report.pdf" target="_blank" rel="noopener noreferrer">[report]</a>
     </p>
-
     <p>
         Sudoku Solver via Linear Programming (CVX/MOSEK),
         Convex Optimization (Spring 2023)
         <a href="https://github.com/hesaminzh/Sudoku-CVX" target="_blank" rel="noopener noreferrer">[code]</a>
     </p>
-
 </section>
 </main>
 <footer>
     <hr>
     <div class="muted">© <span id="y"></span> Hesam Nezhadmohammad</div>
 </footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
-
